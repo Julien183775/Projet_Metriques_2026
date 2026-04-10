@@ -42,6 +42,10 @@ def mongraphique2():
 def moncontact():
     return render_template("pagedecontact.html")
 
+@app.route("/atelier")
+def moncontact2():
+    return render_template("vitessevent.html")
+
 
 # Ne rien mettre après ce commentaire
     
