@@ -31,11 +31,11 @@ def api_paris():
     return jsonify(result)
 
 @app.route("/rapport")
-def mongraphique():
+def mongraphique1():
     return render_template("graphique.html")
 
 @app.route("/histogramme")
-def mongraphique():
+def mongraphique2():
     return render_template("histogramme.html")
 
 
