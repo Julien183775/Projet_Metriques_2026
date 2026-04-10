@@ -38,7 +38,7 @@ def mongraphique1():
 def mongraphique2():
     return render_template("histogramme.html")
 
-@app.route("/contact")
+@app.route("/contact2")
 def mongraphique3():
     return render_template("pagedecontact.html")
 
