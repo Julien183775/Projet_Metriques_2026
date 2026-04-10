@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitesse du vent à Marseille</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    canvas {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vitesse du vent à Marseille</h1>
+  <p>Graphique radar sur les 8 prochaines heures</p>
+
+  <div class="card">
+    <canvas id="windChart"></canvas>
+  </div>
+
+  <script>
+    async function chargerVentMarseille() {
+      try {
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=43.2965&longitude=5.3698&hourly=wind_speed_10m&timezone=auto&forecast_hours=8";
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const heures = data.hourly.time.map(heure => {
+          return heure.split("T")[1].slice(0, 5);
+        });
+
+        const vitesses = data.hourly.wind_speed_10m;
+
+        const ctx = document.getElementById("windChart").getContext("2d");
+
+        new Chart(ctx, {
+          type: "radar",
+          data: {
+            labels: heures,
+            datasets: [{
+              label: "Vent (km/h)",
+              data: vitesses,
+              fill: true,
+              backgroundColor: "rgba(59, 130, 246, 0.2)",
+              borderColor: "rgba(96, 165, 250, 1)",
+              pointBackgroundColor: "rgba(255, 255, 255, 1)",
+              pointBorderColor: "rgba(96, 165, 250, 1)",
+              pointRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: {
+                  color: "white"
+                }
+              }
+            },
+            scales: {
+              r: {
+                angleLines: {
+                  color: "rgba(255,255,255,0.15)"
+                },
+                grid: {
+                  color: "rgba(255,255,255,0.15)"
+                },
+                pointLabels: {
+                  color: "white",
+                  font: {
+                    size: 14
+                  }
+                },
+                ticks: {
+                  color: "white",
+                  backdropColor: "transparent"
+                },
+                suggestedMin: 0
+              }
+            }
+          }
+        });
+      } catch (error) {
+        document.body.innerHTML += "<p>Erreur lors du chargement des données météo.</p>";
+        console.error(error);
+      }
+    }
+
+    chargerVentMarseille();
+  </script>
+</body>
+</html>
