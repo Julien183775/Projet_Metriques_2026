@@ -2,60 +2,121 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire de contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de contact</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
+            background: linear-gradient(to right, #74ebd5, #9face6);
         }
+
         .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
             background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
+
+        .header {
+            background-color: #4a69bd;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .header p {
             margin-top: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            font-size: 16px;
         }
-        button {
-            padding: 10px;
+
+        .formulaire {
+            padding: 30px;
+        }
+
+        .formulaire label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .formulaire input,
+        .formulaire textarea {
             width: 100%;
-            background-color: #4CAF50;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .formulaire textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .formulaire button {
+            background-color: #4a69bd;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 14px 20px;
+            font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
+            width: 100%;
         }
-        button:hover {
-            background-color: #45a049;
+
+        .formulaire button:hover {
+            background-color: #3b5998;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #666;
+            background-color: #f4f4f4;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Contact</h2>
-    <form>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required>
+    <div class="container">
+        <div class="header">
+            <h1>Contactez-moi</h1>
+            <p>N'hésitez pas à me laisser un message</p>
+        </div>
 
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required>
+        <div class="formulaire">
+            <form action="#" method="post">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
 
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>
 
-        <button type="submit">Envoyer</button>
-    </form>
-</div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            Page de contact - Exercice HTML/CSS
+        </div>
+    </div>
 
 </body>
 </html>
